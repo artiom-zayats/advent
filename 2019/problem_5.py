@@ -35,8 +35,7 @@ def IntComp(numbers):
     while i<len(numbers):
         #print("i: ",i)
         op,modes = num_to_params_cod(numbers[i])
-        print("index:",i,"op: ",op,"modes: ",modes)
-        print(numbers[i:i+4])
+        print("index:",i,"op: ",op,"modes: ",modes,"nums:",numbers[i:i+4])
         if op == 99:
             print("Done: 99")
             break
@@ -91,30 +90,13 @@ def IntComp(numbers):
                     param = True
                 else:
                     param = False
-            if len(modes)==1 or modes[1] == 0:
-                i = numbers[numbers[i+2]]
-            else:
-                i = numbers[i+2]
-
-        elif op ==5:
-            param = None
-            if modes[0] == 0:
-                if numbers[numbers[i+1]] != 0:
-                    param = True
-                else:
-                    param = False
-            if modes[0] == 1:
-                if numbers[i+1] != 0:
-                    param = True
-                else:
-                    param = False
             if param:
                 if len(modes)==1 or modes[1] == 0:
                     i = numbers[numbers[i+2]]
                 else:
                     i = numbers[i+2]
-            else:
-                i+=3
+            i+=3
+
         elif op ==6:
             param = None
             if modes[0] == 0:
@@ -132,8 +114,8 @@ def IntComp(numbers):
                     i = numbers[numbers[i+2]]
                 else:
                     i = numbers[i+2]
-            else:
-                i+=3
+            i+=3
+
 
         elif op == 7:
             if modes[0] == 0:
@@ -150,7 +132,7 @@ def IntComp(numbers):
                 numbers[numbers[i+3]] = 0
             i+=4
 
-        elif op == 7:
+        elif op == 8:
             if modes[0] == 0:
                 a = numbers[numbers[i + 1]]
             else:
@@ -167,9 +149,8 @@ def IntComp(numbers):
 
 
         else:
-            print("position",i,"Error",op)
+            print("Error position",i,"Error",op)
             break
-    print("Position 0:", numbers[0])
     return numbers[0]
 
 def main():

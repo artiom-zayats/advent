@@ -34,7 +34,7 @@ def solution2(input_data):
     for i in range(len(input_data)):
         ix,acc = run_programm(input_data,i)
         if ix is not None:
-            print("i->",i,"ix->",ix)
+            #print("i->",i,"ix->",ix)
             if ix == len(input_data):
                 return acc
 
