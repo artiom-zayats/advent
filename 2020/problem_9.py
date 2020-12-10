@@ -33,7 +33,6 @@ def solution1(input_data):
         return input_data[ix]
     return "Not Found"
 
-
 def find_list_that_sums(input_data,test_num):
     sm = 0
     i,j = 0,1
