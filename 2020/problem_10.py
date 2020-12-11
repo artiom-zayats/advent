@@ -12,8 +12,6 @@ def load(filename):
 
 def solution1_1(input_data):
     sorted_input = sorted(input_data)
-    print(sorted_input)
-
     def find_adapter(cur, ix, d1, d2, d3):
 
         if ix == len(sorted_input):
@@ -36,7 +34,6 @@ def solution1_1(input_data):
 def solution1(input_data):
     sorted_input = sorted(input_data)
     sorted_input =  sorted_input
-    #print(sorted_input)
     ls = []
     d1,d2,d3 = 0,0,1
     for i in range(0,len(sorted_input)-1):
@@ -58,8 +55,6 @@ def solution2(input_data):
     diff = []
     for i in range(len(sorted_input)-1):
         diff.append(sorted_input[i+1]-sorted_input[i])
-
-    print(diff)
     i = 0
     count = []
     c = 0
@@ -75,7 +70,6 @@ def solution2(input_data):
         count.append(c)
 
     ans = 1
-    print("count",count)
     for x in count:
         if x == 2:
             ans *= 2
@@ -86,12 +80,12 @@ def solution2(input_data):
     return ans
 
 
-def solution2cant(input_data):
-    sorted_input = sorted(input_data)
-    sorted_input = [0] + sorted_input
-    print(sorted_input)
 
-    que = [(0, [0])]
+
+def solution2slow(start,input_data):
+    sorted_input = sorted(input_data)
+    sorted_input = [start] + sorted_input
+    que = [(start, [0])]
     count = 0
     visited = set()
     visited.add(tuple([0]))
@@ -99,7 +93,6 @@ def solution2cant(input_data):
     while que:
         i+=1
         ix, path = que.pop(0)
-        print(path)
         visited.add(tuple(path))
         if ix == len(sorted_input) - 1:
             count += 1
@@ -112,12 +105,31 @@ def solution2cant(input_data):
                 if tuple(new_path) not in visited:
                     que.append((x, new_path))
     print("iter",i)
-    print(count)
-    print(len(visited))
     return count
 
 
 
+def solution2fib_dict(input_data):
+    sorted_input = sorted(input_data)
+    sorted_input = [0] + sorted_input
+    print("sorted",sorted_input)
+
+    arrangements = {sorted_input[0]:1}
+    for x in sorted_input[1:]:
+        print(f"number:{x} check back {x-1},{x-2},{x-3}")
+        sm = 0
+        for a in [x-1,x-2,x-3]:
+            if a not in arrangements:
+                sm+=0
+            else:
+                print(f"possibility exist:{a}")
+                sm+=arrangements[a]
+        arrangements[x]=sm
+        #arrangements[x] = sum([arrangements.get(a,0) for a in [x-1,x-2,x-3]])
+
+    print(arrangements[sorted_input[-1]])
+
+    return None
 
 
 
@@ -126,14 +138,15 @@ def solution2cant(input_data):
 
 
 def main():
-    input_data = load("inputs/input_10.txt")
+    input_data = load("inputs/input_10_test.txt")
     print("Input: ",input_data)
 
     # sol1 = solution1(input_data)
     # print("Solution1: ",sol1)
 
     print("Solution2: ",solution2(input_data))
-    # print("Solution2: ", solution2slow(input_data))
+    #print("Solution 2 slow",solution2slow(0,input_data))
+    print("Solution2 cant: ", solution2fib_dict(input_data))
 
 
 
