@@ -112,8 +112,8 @@ def main():
     input_data = load("inputs/input_14.txt")
     print("Input: ",input_data)
 
-    # sol1 = solution1(input_data)
-    # print("Solution1: ",sol1)
+    sol1 = solution1(input_data)
+    print("Solution1: ",sol1)
 
     sol2 = solution2(input_data)
     print("Solution2: ",sol2)
